@@ -115,6 +115,7 @@ void elementFloat(const Functor& functor, marian::Tensor out, Tensors... tensors
   element<float>(functor, out, tensors...);
 }
 
+template <class Functor, class... Tensors>
 void elementFloat16(const Functor& functor, marian::Tensor out, Tensors... tensors) {
   element<float16>(functor, out, tensors...);
 }
