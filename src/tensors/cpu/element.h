@@ -115,7 +115,7 @@ void elementFloat(const Functor& functor, marian::Tensor out, Tensors... tensors
   element<float>(functor, out, tensors...);
 }
 
-void elementFloat(const Functor& functor, marian::Tensor out, Tensors... tensors) {
+void elementFloat16(const Functor& functor, marian::Tensor out, Tensors... tensors) {
   element<float16>(functor, out, tensors...);
 }
 
@@ -123,7 +123,7 @@ void elementFloat(const Functor& functor, marian::Tensor out, Tensors... tensors
 template <class Functor, class... Tensors>
 void Element(const Functor& functor, marian::Tensor out, Tensors... tensors) {
   switch(out->type()) {
-  case Type::float16:
+  case Type::float16: elementFloat16(functor, out, tensors...); break;
   case Type::float32: elementFloat(functor, out, tensors...); break;
     //case Type::uint32:  element<uint32_t>(functor, out, tensors...); break;
     default: ABORT("Unsupported type for element-wise operation: {}", out->type()); break;
